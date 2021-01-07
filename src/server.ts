@@ -13,7 +13,7 @@ export class Server {
     }
 
     public async start(): Promise<void> {
-        this._server = this._app.listen(this._port, () => Logger.cyan(`Server is running on port ${this._port}`));
+        this._server = this._app.listen(this._port, () => Logger.log(`Server is running on port ${this._port}`));
     }
 
     public stop(): void {

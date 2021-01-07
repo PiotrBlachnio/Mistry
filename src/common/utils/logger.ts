@@ -1,10 +1,10 @@
-import { cyan, red } from 'chalk';
+import { red } from 'chalk';
 import config from '../../config';
 import { Constants } from '../constants';
 import { Color } from '../constants/color';
 
 export class Logger {
-    public static log(text: string, color: Color): void {
+    public static log(text: string, color: Color = Color.WHITE): void {
         if(this._inTestingEnvironment()) return;
         this._printTextBasedOnColor(text, color);
     }
@@ -20,9 +20,6 @@ export class Logger {
                 break;
             case Color.RED:
                 console.log(red(text));
-                break;
-            case Color.CYAN:
-                console.log(cyan(text));
                 break;
         }
     }
