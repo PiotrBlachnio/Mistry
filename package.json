@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prebuild": "rimraf dist",
+    "build": "tsc",
+    "start:dev": "cross-env APP_MODE=development concurrently \"tsc -w\" \"nodemon dist/index.js\"",
+    "start:prod": "cross-env APP_MODE=production node dist/index.js",
+    "test": "cross-env APP_MODE=testing jest --testTimeout=25000 --detectOpenHandles --forceExit",
+    "lint": "eslint src"
   },
   "repository": {
     "type": "git",
