@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "ES2019",                          
+    "module": "commonjs",                    
+    "lib": ["DOM", "ESNext.AsyncIterable", "ES2019"],
+    "allowJs": true,
+    "outDir": "dist",
+    "rootDir": "src",
+    "strict": true,         
+    "noImplicitAny": false,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
+  },
+  "include": ["./src/**/*.ts"],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "src/tests",
+    "*.test.ts",
+    "*.config.js",
+    "build"
+  ],
+  "typeRoots": ["./src/types", "./node_modules/@types", "./node_modules"]
+}
