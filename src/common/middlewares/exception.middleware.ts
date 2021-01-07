@@ -1,23 +1,31 @@
 import { Request, Response, NextFunction } from 'express';
+import { Constants } from '../constants';
+import { BaseException } from '../exceptions/base.exception';
+import { Logger } from '../utils/logger';
 
-export default async (err: unknown, req: Request, res: Response, next: NextFunction): Promise<Response> => { // eslint-disable-line
-    // if(err instanceof GenericError) {
-    //     await logger.log({ type: 'info', message: err.message, place: err.place });
+export class ExceptionMiddleware {
+    private _id: number = Constants.DEFAULT_EXCEPTION.ID;
+    private _status: number = Constants.DEFAULT_EXCEPTION.STATUS;
+    private _message: string = Constants.DEFAULT_EXCEPTION.MESSAGE;
 
-    //     return res.status(err.statusCode).json({
-    //         error: {
-    //             message: err.message,
-    //             id: err.id
-    //         }
-    //     });
-    // };
+    public init(exception: Error, req: Request, res: Response, next: NextFunction): Response {
+        Logger.log(exception.message, Constants.COLOR.RED);
 
-    await logger.log({ type: 'error', message: err.message, place: err.place });
-    
-    return res.status(500).json({
-        error: {
-            message: 'Internal server error',
-            id: 0
-        }
-    });
-};
+        if(exception instanceof BaseException) this._assignBaseExceptionData(exception);
+
+        return this._createResponse(res);
+    }
+
+    private _assignBaseExceptionData(exception: BaseException): void {
+        this._id = exception.id;
+        this._status = exception.statusCode;
+        this._message = exception.message;
+    }
+
+    private _createResponse(res: Response): Response {
+        return res.status(this._status).json({
+            id: this._id,
+            message: this._message
+        });
+    }
+}
