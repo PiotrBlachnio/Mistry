@@ -1,5 +1,6 @@
 import express, { Application } from 'express';
 import { Server as HttpServer } from 'http';
+import { Logger } from './common/utils/logger';
 
 export class Server {
     private readonly _port: number;
@@ -12,7 +13,7 @@ export class Server {
     }
 
     public async start(): Promise<void> {
-        this._server = this._app.listen(this._port, () => logger.cyan(`Server is running on port ${this._port}`));
+        this._server = this._app.listen(this._port, () => Logger.cyan(`Server is running on port ${this._port}`));
     }
 
     public stop(): void {
