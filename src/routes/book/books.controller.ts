@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { Constants } from '../../common/constants';
 import { BooksService } from './books.service';
 
@@ -7,8 +7,8 @@ export class BooksController {
         this.get = this.get.bind(this);
     }
 
-    public async get(req: Request, res: Response): Promise<Response> {
-        const data = await this._booksService.get(req.query.q as string);
+    public async get(req: Request, res: Response, next: NextFunction): Promise<Response> {
+        const data = await this._booksService.get(req, next);
         return res.status(Constants.STATUS_CODE.OK).json(data);
     }
 }
