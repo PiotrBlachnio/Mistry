@@ -4,7 +4,7 @@ import { ConfigValidator } from './config-validator';
 import { Logger } from './logger';
 import cors from 'cors';
 import { Constants } from '../constants';
-import { ExceptionMiddleware } from '../middlewares/exception.middleware';
+import { catchExceptions } from '../middlewares/catch-exceptions.middleware';
 import routers from '../../routes';
 
 export class ResourcesInitiator {
@@ -17,7 +17,7 @@ export class ResourcesInitiator {
 
         this._renderRoutes(app);
         
-        app.use(new ExceptionMiddleware().init);
+        app.use(catchExceptions);
     }
 
     private static _createExceptionListeners(): void {

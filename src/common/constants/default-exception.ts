@@ -4,5 +4,5 @@ import { StatusCode } from './status-code';
 export const DefaultException = {
     ID: Exception.DEFAULT,
     STATUS: StatusCode.INTERNAL_SERVER_ERROR,
-    MESSAGE: 'Internal server error'
+    MESSAGE: 'Internal server error' as string
 } as const;
