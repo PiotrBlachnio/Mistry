@@ -1,5 +1,7 @@
 import bookRouter from './book';
+import defaultRouter from './default';
 
 export default {
-    bookRouter
+    bookRouter,
+    defaultRouter
 } as const;
