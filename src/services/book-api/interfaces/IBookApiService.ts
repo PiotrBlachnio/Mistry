@@ -1,5 +1,5 @@
 import { IBookData } from './IBookData';
 
 export interface IBookApiService {
-    getBooksData(query: string): Promise<IBookData[]>;
+    getBooksData(query: string, maxResults: string): Promise<IBookData[]>;
 }

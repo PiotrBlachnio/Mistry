@@ -3,5 +3,5 @@ import { InvalidQueryException } from '../../../common/exceptions/invalid-query.
 
 export const GetBookValidationSchema = Joi.object({
     query: Joi.string().required().error(InvalidQueryException.of('query')),
-    maxResults: Joi.number().optional().error(InvalidQueryException.of('maxResults'))
+    maxResults: Joi.number().optional().min(1).max(40).error(InvalidQueryException.of('maxResults'))
 });
