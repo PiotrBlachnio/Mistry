@@ -6,6 +6,7 @@ import cors from 'cors';
 import { Constants } from '../constants';
 import { catchExceptions } from '../middlewares/catch-exceptions.middleware';
 import routers from '../../routes';
+import defaultRouter from '../../routes/default';
 
 export class ResourcesInitiator {
     public static async init(app: Application): Promise<void> {
@@ -33,5 +34,6 @@ export class ResourcesInitiator {
 
     private static _renderRoutes(app: Application): void {
         Object.values(routers).forEach(router => app.use(config.APP.PREFIX, router));
+        app.use('*', defaultRouter);
     }
 }
