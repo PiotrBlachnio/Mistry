@@ -3,17 +3,25 @@ import { IGoogleApiService } from '../../services/google-api/interfaces/IGoogleA
 import { IBookData } from '../../services/google-api/interfaces/IBookData';
 import { Request } from 'express';
 import { IGetManyBooksParameters } from '../../services/google-api/interfaces/IGetManyBooksParameters';
+import { BookNotFoundException } from '../../common/exceptions/book-not-found.exception';
 
 export class BooksService {
     constructor(private readonly _googleApiService: IGoogleApiService = new GoogleApiService()) {}
 
     public async getMany(req: Request): Promise<IBookData[]> {
         const parameters = this._getParametersFromQuery(req);
-        return this._googleApiService.getManyBooks(parameters);
+        
+        const books = await this._googleApiService.getManyBooks(parameters);
+
+        return books;
     }
 
     public async getById(req: Request): Promise<IBookData> {
-        return this._googleApiService.getBookById(req.params.id);
+        const book = await this._googleApiService.getBookById(req.params.id);
+        
+        if(!book) throw new BookNotFoundException();
+
+        return book;
     }
 
     private _getParametersFromQuery(req: Request): IGetManyBooksParameters {
