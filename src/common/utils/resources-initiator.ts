@@ -4,7 +4,9 @@ import { ConfigValidator } from './config-validator';
 import { Logger } from './logger';
 import cors from 'cors';
 import { Constants } from '../constants';
-import { ExceptionMiddleware } from '../middlewares/exception.middleware';
+import { catchExceptions } from '../middlewares/catch-exceptions.middleware';
+import routers from '../../routes';
+import defaultRouter from '../../routes/default';
 
 export class ResourcesInitiator {
     public static async init(app: Application): Promise<void> {
@@ -14,7 +16,9 @@ export class ResourcesInitiator {
         
         app.use(cors());
 
-        app.use(new ExceptionMiddleware().init);
+        this._renderRoutes(app);
+        
+        app.use(catchExceptions);
     }
 
     private static _createExceptionListeners(): void {
@@ -26,5 +30,10 @@ export class ResourcesInitiator {
         process.on('unhandledRejection', (error) => {
             Logger.log(error as string, Constants.COLOR.RED);
         });
+    }
+
+    private static _renderRoutes(app: Application): void {
+        Object.values(routers).forEach(router => app.use(config.APP.PREFIX, router));
+        app.use('*', defaultRouter);
     }
 }
