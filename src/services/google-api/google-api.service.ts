@@ -1,10 +1,10 @@
 import config from '../../config';
 import axios from 'axios';
 import { IBookData } from './interfaces/IBookData';
-import { IBookApiService } from './interfaces/IBookApiService';
+import { IGoogleApiService } from './interfaces/IGoogleApiService';
 import { ISearchParameters } from './interfaces/ISearchParameters';
 
-export class BookApiService implements IBookApiService {
+export class GoogleApiService implements IGoogleApiService {
     public async getBooksData(parameters: ISearchParameters): Promise<IBookData[]> {
         return this._requestBooksData(parameters);
     }
