@@ -8,5 +8,6 @@ const router = Router();
 const controller = new BooksController();
 
 router.get(Constants.ENDPOINT.BOOK.GET_MANY, validateQuery(GetManyValidationSchema), controller.getMany);
+router.get(Constants.ENDPOINT.BOOK.GET_BY_ID, controller.getById);
 
 export default router;

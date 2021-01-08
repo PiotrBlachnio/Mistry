@@ -12,6 +12,10 @@ export class BooksService {
         return this._googleApiService.getManyBooks(parameters);
     }
 
+    public async getById(req: Request): Promise<IBookData> {
+        return this._googleApiService.getBookById(req.params.id);
+    }
+
     private _getParametersFromQuery(req: Request): ISearchBooksParameters {
         const query: unknown = req.query;
         const parsedQuery = query as ISearchBooksParameters;
