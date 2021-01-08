@@ -1,4 +1,5 @@
 import { AppMode } from './app-mode';
+import { Book } from './book';
 import { Color } from './color';
 import { DefaultException } from './default-exception';
 import { Endpoint } from './endpoint';
@@ -7,6 +8,7 @@ import { StatusCode } from './status-code';
 
 export const Constants = {
     APP_MODE: AppMode,
+    BOOK: Book,
     COLOR: Color,
     DEFAULT_EXCEPTION: DefaultException,
     ENDPOINT: Endpoint,

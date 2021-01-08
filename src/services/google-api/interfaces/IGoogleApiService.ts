@@ -1,8 +1,8 @@
 import { IBookData } from './IBookData';
-import { ISearchBooksParameters } from './ISearchBooksParameters';
+import { IGetManyBooksParameters } from './IGetManyBooksParameters';
 
 export interface IGoogleApiService {
-    getManyBooks(parameters: ISearchBooksParameters): Promise<IBookData[]>;
+    getManyBooks(parameters: IGetManyBooksParameters): Promise<IBookData[]>;
 
     getBookById(id: string): Promise<IBookData>;
 }
