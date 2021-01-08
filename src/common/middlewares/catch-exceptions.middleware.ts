@@ -3,7 +3,7 @@ import { Constants } from '../constants';
 import { BaseException } from '../exceptions/base.exception';
 import { Logger } from '../utils/logger';
 
-export function catchExceptions(exception: Error, req: Request, res: Response, next: NextFunction): Response {
+export function catchExceptions(exception: Error, req: Request, res: Response, next: NextFunction): void {
     let id = Constants.DEFAULT_EXCEPTION.ID;
     let status = Constants.DEFAULT_EXCEPTION.STATUS;
     let message = Constants.DEFAULT_EXCEPTION.MESSAGE;
@@ -16,5 +16,5 @@ export function catchExceptions(exception: Error, req: Request, res: Response, n
         message = exception.message;
     }
 
-    return res.status(status).json({ id, message });
+    res.status(status).json({ id, message });
 }

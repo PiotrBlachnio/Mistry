@@ -7,8 +7,12 @@ export class BooksController {
         this.get = this.get.bind(this);
     }
 
-    public async get(req: Request, res: Response, next: NextFunction): Promise<Response> {
-        const data = await this._booksService.get(req);
-        return res.status(Constants.STATUS_CODE.OK).json(data);
+    public async get(req: Request, res: Response, next: NextFunction): Promise<void> {
+        try {
+            const data = await this._booksService.get(req);
+            res.status(Constants.STATUS_CODE.OK).json(data);
+        } catch(error) {
+            next(error);
+        }
     }
 }

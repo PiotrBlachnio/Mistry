@@ -1,5 +1,6 @@
 import { IBookData } from './IBookData';
+import { ISearchParameters } from './ISearchParameters';
 
 export interface IBookApiService {
-    getBooksData(query: string, maxResults: string): Promise<IBookData[]>;
+    getBooksData(parameters: ISearchParameters): Promise<IBookData[]>;
 }
