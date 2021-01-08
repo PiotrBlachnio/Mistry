@@ -4,12 +4,12 @@ import { BooksService } from './books.service';
 
 export class BooksController {
     constructor(private readonly _booksService: BooksService = new BooksService()) {
-        this.get = this.get.bind(this);
+        this.getMany = this.getMany.bind(this);
     }
 
-    public async get(req: Request, res: Response, next: NextFunction): Promise<void> {
+    public async getMany(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const data = await this._booksService.get(req);
+            const data = await this._booksService.getMany(req);
             res.status(Constants.STATUS_CODE.OK).json(data);
         } catch(error) {
             next(error);
