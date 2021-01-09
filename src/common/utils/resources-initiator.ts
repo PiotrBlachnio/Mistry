@@ -12,7 +12,7 @@ export class ResourcesInitiator {
     public static async init(app: Application): Promise<void> {
         await ConfigValidator.validate(config);
         
-        this._createExceptionListeners();
+        this._initiateExceptionListeners();
         
         app.use(cors());
 
@@ -21,7 +21,7 @@ export class ResourcesInitiator {
         app.use(catchExceptions);
     }
 
-    private static _createExceptionListeners(): void {
+    private static _initiateExceptionListeners(): void {
         process.on('uncaughtException', (error) => {
             Logger.log(error.message, Constants.COLOR.RED);
             process.exit(1);
