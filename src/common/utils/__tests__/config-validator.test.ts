@@ -86,7 +86,6 @@ describe('ConfigValidator.validate', () => {
 
 async function checkConfig(config: typeof globalConfig, isCalled: boolean = true): Promise<void> {
     const mockedExit = jest.spyOn(process, 'exit').mockImplementation(number => number as never);
-
     await ConfigValidator.validate(config);
 
     if(isCalled) {
