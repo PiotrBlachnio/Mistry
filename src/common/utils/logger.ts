@@ -21,8 +21,6 @@ export class Logger {
             case Color.RED:
                 console.log(red(text));
                 break;
-            default:
-                throw new Error(`LOGGER_ERROR - Color not supported: '${Color}'`);
         }
     }
 }

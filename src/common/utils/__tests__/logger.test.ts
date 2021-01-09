@@ -69,7 +69,7 @@ describe('Logger.log', () => {
 });
 
 function callLoggerWithMockedConsole(color: Color): jest.SpyInstance {
-    const mockedConsole = jest.spyOn(console, 'log');
+    const mockedConsole = jest.spyOn(console, 'log').mockImplementation(log => log);
 
     Logger.log('test', color); 
 
