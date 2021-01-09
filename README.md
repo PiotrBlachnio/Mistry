@@ -3,6 +3,7 @@
 * Typescript
 * Docker
 * Jest
+* Swagger
 
 ## Running on docker
 ****

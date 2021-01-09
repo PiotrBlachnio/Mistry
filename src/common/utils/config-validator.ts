@@ -20,7 +20,7 @@ export class ConfigValidator {
                 PREFIX: string(),
                 PORT: number().min(1).max(65353)
             },
-            BOOKS: {
+            BOOK: {
                 API_KEY: string().required()
             }
         });
