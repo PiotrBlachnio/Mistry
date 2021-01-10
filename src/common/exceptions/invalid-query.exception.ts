@@ -6,7 +6,7 @@ export class InvalidQueryException extends BaseException {
     statusCode = Constants.STATUS_CODE.BAD_REQUEST;
     message = '';
 
-    public constructor(parameter: string) {
+    private constructor(parameter: string) {
         super();
         this.message = `Query parameter \'${parameter}\' is invalid`;
     }
