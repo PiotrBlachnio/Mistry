@@ -3,6 +3,7 @@ import { IBookData } from './interfaces/IBookData';
 import { IGoogleApiService } from './interfaces/IGoogleApiService';
 import { IGetManyBooksParameters } from './interfaces/IGetManyBooksParameters';
 import { UrlBuilder } from '../../common/utils/url-builder';
+import { ICompressionHeaders } from './interfaces/ICompressionHeaders';
 
 export class GoogleApiService implements IGoogleApiService {
     public async getManyBooks(parameters: IGetManyBooksParameters): Promise<IBookData[]> {
@@ -22,7 +23,7 @@ export class GoogleApiService implements IGoogleApiService {
         }
     }
 
-    private _getCompressionHeaders(): Record<string, string> {
+    private _getCompressionHeaders(): ICompressionHeaders {
         return {
             'Accept-Encoding': 'gzip',
             'User-Agent': 'node-api (gzip)'
