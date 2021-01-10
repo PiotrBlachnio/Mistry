@@ -21,7 +21,7 @@ describe('catchExceptions', () => {
     });
 });
 
-function checkMockCallsWithProvidedParameters(exception: Error, status: StatusCode, id: Exception, message: string): void {
+const checkMockCallsWithProvidedParameters = (exception: Error, status: StatusCode, id: Exception, message: string): void => {
     const mockedJsonFunction = jest.fn();
     const mockedNextFunction = jest.fn();
     const mockedResponse = { status: jest.fn().mockReturnValue({ json: mockedJsonFunction }) };
