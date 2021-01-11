@@ -4,7 +4,7 @@ import { Request } from 'express';
 import { IGetManyBooksParameters } from '../../services/google-api/interfaces/IGetManyBooksParameters';
 import { BookNotFoundException } from '../../common/exceptions/book-not-found.exception';
 
-export class BooksService {
+export class BookService {
     constructor(private readonly _googleApiService = new GoogleApiService()) {}
 
     public async getMany(req: Request): Promise<IBookData[]> {
