@@ -1,5 +1,7 @@
 import bookRouter from './book';
+import movieRouter from './movie';
 
 export default {
-    bookRouter
+    bookRouter,
+    movieRouter
 } as const;
