@@ -183,4 +183,36 @@ describe('Book API', () => {
             });
         });
     });
+
+    describe(`GET ${Constants.ENDPOINT.BOOK.GET_BY_ID}`, () => {
+        describe('When book does not exist', () => {
+            beforeAll(async (done) => {
+                response = await request(app).get(`${config.APP.PREFIX}/${Constants.ENDPOINT.BOOK.GET_BY_ID.replace(':id', 'test')}`);
+                done();
+            });
+
+            it(`Should return status code ${Constants.STATUS_CODE.NOT_FOUND}`, () => {
+                expect(response.status).toEqual(Constants.STATUS_CODE.NOT_FOUND);
+            });
+
+            it(`Should return error id ${Constants.EXCEPTION.BOOK_NOT_FOUND}`, () => {
+                expect(response.body.error.id).toEqual(Constants.EXCEPTION.BOOK_NOT_FOUND);
+            });
+        });
+
+        describe('When book exists', () => {
+            beforeAll(async (done) => {
+                response = await request(app).get(`${config.APP.PREFIX}/${Constants.ENDPOINT.BOOK.GET_BY_ID.replace(':id', 'fiBbdJ1sdA8C')}`);
+                done();
+            });
+
+            it(`Should return status code ${Constants.STATUS_CODE.OK}`, () => {
+                expect(response.status).toEqual(Constants.STATUS_CODE.OK);
+            });
+
+            it(`Should return found book`, () => {
+                expect(response.body.id).toEqual('fiBbdJ1sdA8C');
+            });
+        });
+    });
 });
