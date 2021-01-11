@@ -35,7 +35,7 @@ export class GoogleApiService {
         return {
             id: data.id,
             title: data.volumeInfo.title,
-            author: data.volumeInfo.authors[0],
+            author: data.volumeInfo.authors ? data.volumeInfo.authors[0] : 'Not available',
             publisher: data.volumeInfo.publisher,
             publishedDate: data.volumeInfo.publishedDate
         }
