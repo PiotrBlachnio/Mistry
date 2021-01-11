@@ -1,12 +1,11 @@
 import { GoogleApiService } from '../../services/google-api/google-api.service';
-import { IGoogleApiService } from '../../services/google-api/interfaces/IGoogleApiService';
 import { IBookData } from '../../services/google-api/interfaces/IBookData';
 import { Request } from 'express';
 import { IGetManyBooksParameters } from '../../services/google-api/interfaces/IGetManyBooksParameters';
 import { BookNotFoundException } from '../../common/exceptions/book-not-found.exception';
 
-export class BooksService {
-    constructor(private readonly _googleApiService: IGoogleApiService = new GoogleApiService()) {}
+export class BookService {
+    constructor(private readonly _googleApiService = new GoogleApiService()) {}
 
     public async getMany(req: Request): Promise<IBookData[]> {
         const parameters = this._getParametersFromQuery(req);

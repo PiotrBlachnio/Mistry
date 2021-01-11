@@ -22,6 +22,9 @@ export class ConfigValidator {
             },
             BOOK: {
                 API_KEY: string().required()
+            },
+            MOVIE: {
+                API_KEY: string().required()
             }
         });
     }

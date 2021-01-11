@@ -12,6 +12,9 @@ describe('ConfigValidator.validate', () => {
         },
         BOOK: {
             API_KEY: faker.random.alphaNumeric(10)
+        },
+        MOVIE: {
+            API_KEY: faker.random.alphaNumeric(10)
         }
     }; 
     
@@ -73,6 +76,21 @@ describe('ConfigValidator.validate', () => {
 
         afterAll(() => {
             config.BOOK.API_KEY = faker.random.alphaNumeric(10);
+            jest.clearAllMocks();
+        });
+    });
+
+    describe('When MOVIE.API_KEY is invalid', () => {
+        beforeAll(() => {
+            config.MOVIE.API_KEY = '';
+        });
+        
+        it('Should call process.exit with code 1', async () => {
+            await checkConfig(config);
+        });
+
+        afterAll(() => {
+            config.MOVIE.API_KEY = faker.random.alphaNumeric(10);
             jest.clearAllMocks();
         });
     });

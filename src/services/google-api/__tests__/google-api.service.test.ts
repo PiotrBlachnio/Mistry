@@ -5,11 +5,29 @@ import faker from 'faker';
 describe('GoogleApiService', () => {
     let googleApiService: GoogleApiService;
 
+    const bookResponseData = {
+        id: faker.random.alphaNumeric(10),
+        volumeInfo: {
+            title: faker.random.alphaNumeric(10),
+            authors: [faker.random.alphaNumeric(10)],
+            publisher: faker.random.alphaNumeric(10),
+            publishedDate: faker.random.alphaNumeric(10)
+        }
+    };
+    
+    const mappedBookData = {
+        id: bookResponseData.id,
+        title: bookResponseData.volumeInfo.title,
+        author: bookResponseData.volumeInfo.authors[0],
+        publisher: bookResponseData.volumeInfo.publisher,
+        publishedDate: bookResponseData.volumeInfo.publishedDate
+    }
+
     describe('getManyBooks', () => {
         describe('When books exist', () => {
             beforeAll(() => {
                 const mockedHttpService = {
-                    makeGetRequest: jest.fn().mockReturnValue({ data: { items: ['Book'] }})
+                    makeGetRequest: jest.fn().mockReturnValue({ data: { items: [bookResponseData] }})
                 }
 
                 googleApiService = new GoogleApiService(mockedHttpService);
@@ -17,7 +35,7 @@ describe('GoogleApiService', () => {
 
             it('Should return found books', async () => {
                 const books = await googleApiService.getManyBooks(createGetManyBooksParameters());
-                expect(books).toEqual(['Book']);
+                expect(books).toEqual([mappedBookData]);
             });
         });
 
@@ -41,7 +59,7 @@ describe('GoogleApiService', () => {
         describe('When book exists', () => {
             beforeAll(() => {
                 const mockedHttpService = {
-                    makeGetRequest: jest.fn().mockReturnValue({ data:  'Book' })
+                    makeGetRequest: jest.fn().mockReturnValue({ data: bookResponseData })
                 }
 
                 googleApiService = new GoogleApiService(mockedHttpService);
@@ -49,7 +67,7 @@ describe('GoogleApiService', () => {
 
             it('Should return found book', async () => {
                 const book = await googleApiService.getBookById('');
-                expect(book).toEqual('Book');
+                expect(book).toEqual(mappedBookData);
             });
         });
 

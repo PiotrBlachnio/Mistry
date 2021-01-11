@@ -1,0 +1,137 @@
+openapi: 3.0.0
+info:
+  title: Books & Movies API
+  description: REST API documentation
+  version: 1.0.0
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+paths:
+  /api/v1/book:
+    get:
+      tags:
+        - BOOK
+      summary: Get many books
+      parameters:
+        - in: query
+          name: query
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: maxResults
+          schema:
+            type: integer
+          required: false
+          description: (1-40)
+        - in: query
+          name: startIndex
+          schema:
+            type: integer
+          required: false
+          description: (1-100)
+      responses:
+        200:
+          content:
+            application/json:
+              examples:
+                 Success:
+                    value: []
+        400:
+          content:
+            application/json:
+              examples:
+                 Invalid query parameters:
+                    value:
+                      error:
+                        id: 100
+                        message: 'Query parameter <param> is invalid'
+  /api/v1/book/:id:
+    get:
+      tags:
+        - BOOK
+      summary: Get book by id
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: ID of the requested book
+      responses:
+        200:
+          content:
+            application/json:
+              examples:
+                 Success:
+                    value: {}
+        404:
+          content:
+            application/json:
+              examples:
+                 Book not found:
+                    value:
+                      error:
+                        id: 101
+                        message: 'Book with provided id does not exist'
+  /api/v1/movie:
+    get:
+      tags:
+        - MOVIE
+      summary: Get many movies
+      parameters:
+        - in: query
+          name: query
+          schema:
+            type: string
+          required: true
+        - in: query
+          name: page
+          schema:
+            type: integer
+          required: false
+          description: (1-100)
+      responses:
+        200:
+          content:
+            application/json:
+              examples:
+                 Success:
+                    value: []
+        400:
+          content:
+            application/json:
+              examples:
+                 Invalid query parameters:
+                    value:
+                      error:
+                        id: 100
+                        message: 'Query parameter <param> is invalid'
+  /api/v1/movie/:id:
+    get:
+      tags:
+        - MOVIE
+      summary: Get movie by id
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: ID of the requested movie
+      responses:
+        200:
+          content:
+            application/json:
+              examples:
+                 Success:
+                    value: {}
+        404:
+          content:
+            application/json:
+              examples:
+                 Book not found:
+                    value:
+                      error:
+                        id: 102
+                        message: 'Movie with provided id does not exist'

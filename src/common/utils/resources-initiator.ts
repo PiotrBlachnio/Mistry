@@ -1,8 +1,11 @@
 import { Application } from 'express';
+import swaggerUI from 'swagger-ui-express';
+import path from 'path';
+import yaml from 'yamljs';
+import cors from 'cors';
 import config from '../../config';
 import { ConfigValidator } from './config-validator';
 import { Logger } from './logger';
-import cors from 'cors';
 import { Constants } from '../constants';
 import { catchExceptions } from '../middlewares/catch-exceptions.middleware';
 import routers from '../../routes';
@@ -34,6 +37,10 @@ export class ResourcesInitiator {
 
     private static _renderRoutes(app: Application): void {
         Object.values(routers).forEach(router => app.use(config.APP.PREFIX, router));
+
+        const swaggerDocs = yaml.load(path.join(__dirname, '/../../../swagger.yml'));
+        app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
+        
         app.use('*', defaultRouter);
     }
 }

@@ -4,14 +4,16 @@ import { Constants } from '../common/constants';
 import config from '../config';
 import { Server } from '../server';
 
+const server: Server = new Server(config.APP.PORT);
 let app: Application;
 
 beforeAll(async () => {
-    const server = new Server(config.APP.PORT);
-
     await server.start();
-
     app = server.getApp();
+});
+
+afterAll(() => {
+    server.close();
 });
 
 describe('Book API', () => {
@@ -153,7 +155,7 @@ describe('Book API', () => {
             });
         });
 
-        describe('When books exists and no additional parameters are provided', () => {
+        describe('When books exist and no additional parameters are provided', () => {
             beforeAll(async (done) => {
                 response = await request(app).get(`${config.APP.PREFIX}/${Constants.ENDPOINT.BOOK.GET_MANY}?query=flowers`);
                 done();
@@ -168,7 +170,7 @@ describe('Book API', () => {
             });
         });
 
-        describe('When books exists and additional parameters are provided', () => {
+        describe('When books exist and additional parameters are provided', () => {
             beforeAll(async (done) => {
                 response = await request(app).get(`${config.APP.PREFIX}/${Constants.ENDPOINT.BOOK.GET_MANY}?query=flowers&maxResults=10&startIndex=5`);
                 done();

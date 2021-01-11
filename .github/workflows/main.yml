@@ -9,9 +9,10 @@ jobs:
     name: Build and test
     runs-on: ubuntu-latest
     env:
-      BOOKS_API_KEY: ${{ secrets.BOOKS_API_KEY }}
       APP_PREFIX: ${{ secrets.APP_PREFIX }}
       APP_PORT: ${{ secrets.APP_PORT }}
+      BOOKS_API_KEY: ${{ secrets.BOOKS_API_KEY }}
+      MOVIES_API_KEY: ${{ secrets.MOVIES_API_KEY }}
       CI: true
 
     steps:
