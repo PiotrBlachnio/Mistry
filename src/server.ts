@@ -15,4 +15,8 @@ export class Server {
         await ResourcesInitiator.init(this._app);
         this._app.listen(this._port, () => Logger.log(`Server is running on port ${this._port}`));
     }
+
+    public getApp(): Application {
+        return this._app;
+    }
 }

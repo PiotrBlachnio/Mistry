@@ -31,5 +31,5 @@ const checkMockCallsWithProvidedParameters = (exception: Error, status: StatusCo
 
     expect(mockedResponse.status).toHaveBeenCalledWith(status);
     expect(mockedNextFunction).toHaveBeenCalled();
-    expect(mockedJsonFunction).toHaveBeenCalledWith({ id, message });
+    expect(mockedJsonFunction).toHaveBeenCalledWith({ error: { id, message }});
 }

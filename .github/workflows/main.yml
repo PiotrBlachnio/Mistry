@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       BOOKS_API_KEY: ${{ secrets.BOOKS_API_KEY }}
+      APP_PREFIX: ${{ secrets.APP_PREFIX }}
+      APP_PORT: ${{ secrets.APP_PORT }}
+      CI: true
 
     steps:
     - uses: actions/checkout@v2
@@ -20,8 +23,11 @@ jobs:
     - name: Build application
       run: npm run build
 
-    - name: Run tests
-      run: npm run test
+    - name: Run unit tests
+      run: npm run test:unit
+
+    - name: Run e2e tests
+      run: npm run test:e2e
 
     - name: Check for lint errors
       run: npm run lint

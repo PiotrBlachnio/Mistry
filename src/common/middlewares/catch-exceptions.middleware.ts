@@ -16,6 +16,6 @@ export function catchExceptions(exception: Error, req: Request, res: Response, n
         message = exception.message;
     }
 
-    res.status(status).json({ id, message });
+    res.status(status).json({ error: { id, message }});
     next();
 }
