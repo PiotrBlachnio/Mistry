@@ -129,15 +129,3 @@ const createGetManyBooksParameters = (): IGetManyBooksParameters => {
         startIndex: faker.random.number()
     }
 };
-
-const createBookResponseData = () => {
-    return {
-        id: faker.random.alphaNumeric(10),
-        volumeInfo: {
-            title: faker.random.alphaNumeric(10),
-            authors: [faker.random.alphaNumeric(10)],
-            publisher: faker.random.alphaNumeric(10),
-            publishedDate: faker.random.alphaNumeric(10)
-        }
-    }
-};

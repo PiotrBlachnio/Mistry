@@ -1,16 +1,31 @@
 import faker from 'faker';
 import { IGetManyMoviesParameters } from '../interfaces/IGetManyMoviesParameters';
-import { IMovieData } from '../interfaces/IMovieData';
 import { OmdbApiService } from '../omdb-api.service';
 
 describe('OmdbApiService', () => {
     let omdbApiService: OmdbApiService;
 
+    const movieResponseData = {
+        imdbID: faker.random.alphaNumeric(10),
+        Title: faker.random.alphaNumeric(10),
+        Year: faker.random.alphaNumeric(10),
+        Type: faker.random.alphaNumeric(10),
+        Poster: faker.random.alphaNumeric(10),
+    };
+    
+    const mappedMovieData = {
+        id: movieResponseData.imdbID,
+        title: movieResponseData.Title,
+        year: movieResponseData.Year,
+        type: movieResponseData.Type,
+        poster: movieResponseData.Poster
+    }
+
     describe('getManyMovies', () => {
         describe('When movies exist', () => {
             beforeAll(() => {
                 const mockedHttpService = {
-                    makeGetRequest: jest.fn().mockReturnValue({ data: { Search: ['Movie'] }})
+                    makeGetRequest: jest.fn().mockReturnValue({ data: { Search: [movieResponseData] }})
                 }
 
                 omdbApiService = new OmdbApiService(mockedHttpService);
@@ -18,7 +33,7 @@ describe('OmdbApiService', () => {
 
             it('Should return found movies', async () => {
                 const movies = await omdbApiService.getManyMovies(createGetManyMoviesParameters());
-                expect(movies).toEqual(['Movie']);
+                expect(movies).toEqual([mappedMovieData]);
             });
         });
 
@@ -40,17 +55,9 @@ describe('OmdbApiService', () => {
 
     describe('getMovieById', () => {
         describe('When movie exists', () => {
-            const movieData = {
-                Title: faker.random.alphaNumeric(10),
-                Poster: faker.random.alphaNumeric(10),
-                Type: faker.random.alphaNumeric(10),
-                Year: faker.random.alphaNumeric(10),
-                imdbID: faker.random.alphaNumeric(10),
-            }
-
             beforeAll(() => {
                 const mockedHttpService = {
-                    makeGetRequest: jest.fn().mockReturnValue({ data: movieData })
+                    makeGetRequest: jest.fn().mockReturnValue({ data: movieResponseData })
                 }
 
                 omdbApiService = new OmdbApiService(mockedHttpService);
@@ -58,7 +65,7 @@ describe('OmdbApiService', () => {
 
             it('Should return found movie', async () => {
                 const movie = await omdbApiService.getMovieById('');
-                expect(movie).toEqual(movieData);
+                expect(movie).toEqual(mappedMovieData);
             });
         });
 
