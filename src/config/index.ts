@@ -1,7 +1,9 @@
 import APP from './app';
 import BOOK from './book';
+import MOVIE from './movie';
 
 export default {
     APP,
-    BOOK
+    BOOK,
+    MOVIE
 } as const;

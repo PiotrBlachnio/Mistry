@@ -1,11 +1,10 @@
 import { IBookData } from './interfaces/IBookData';
-import { IGoogleApiService } from './interfaces/IGoogleApiService';
 import { IGetManyBooksParameters } from './interfaces/IGetManyBooksParameters';
 import { UrlBuilder } from '../../common/utils/url-builder';
 import { IHttpService } from '../http/interfaces/IHttpService';
 import { AxiosHttpService } from '../http/axios.service';
 
-export class GoogleApiService implements IGoogleApiService {
+export class GoogleApiService {
     constructor(private readonly _httpService: IHttpService = new AxiosHttpService()) {}
 
     public async getManyBooks(parameters: IGetManyBooksParameters): Promise<IBookData[]> {
