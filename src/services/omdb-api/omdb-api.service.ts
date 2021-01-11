@@ -17,13 +17,12 @@ export class OmdbApiService {
 
     public async getMovieById(id: string): Promise<IMovieData | null> {
         const response = await this._httpService.makeGetRequest(UrlBuilder.getMovieByIdUrl(id));
-        
         if(response.data.Error) return null;
 
         return this._mapResponseToMovieData(response);
     }
 
-    public _mapResponseToMovieData(response: IHttpResponse): IMovieData {
+    private _mapResponseToMovieData(response: IHttpResponse): IMovieData {
         return {
             Title: response.data.Title,
             Year: response.data.Year,
