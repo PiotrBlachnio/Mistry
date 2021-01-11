@@ -1,7 +1,7 @@
 export interface IMovieData {
-    Title: string;
-    Year: string;
-    imdbID: string;
-    Type: string;
-    Poster: string;
+    id: string;
+    title: string;
+    year: string;  
+    type: string;
+    poster: string;
 }

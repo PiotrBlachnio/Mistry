@@ -24,11 +24,11 @@ export class OmdbApiService {
 
     private _mapResponseToMovieData(response: IHttpResponse): IMovieData {
         return {
-            Title: response.data.Title,
-            Year: response.data.Year,
-            imdbID: response.data.imdbID,
-            Type: response.data.Type,
-            Poster: response.data.Poster
+            id: response.data.imdbID,
+            title: response.data.Title,
+            year: response.data.Year,
+            type: response.data.Type,
+            poster: response.data.Poster
         };
     }
 }

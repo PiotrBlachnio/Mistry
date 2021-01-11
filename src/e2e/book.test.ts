@@ -4,14 +4,16 @@ import { Constants } from '../common/constants';
 import config from '../config';
 import { Server } from '../server';
 
+const server: Server = new Server(config.APP.PORT);
 let app: Application;
 
 beforeAll(async () => {
-    const server = new Server(config.APP.PORT);
-
     await server.start();
-
     app = server.getApp();
+});
+
+afterAll(() => {
+    server.close();
 });
 
 describe('Book API', () => {
