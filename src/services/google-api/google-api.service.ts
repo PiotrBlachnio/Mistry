@@ -11,13 +11,13 @@ export class GoogleApiService {
         const response = await this._httpService.makeGetRequest(UrlBuilder.getManyBooksUrl(parameters), this._getCompressionHeaders());
         const books = response.data.items || [];
 
-        return books;
+        return books.map((book: Record<string, any>) => this._mapResponseToBookData(book));
     }
 
     public async getBookById(id: string): Promise<IBookData | null> {
         try {
             const response = await this._httpService.makeGetRequest(UrlBuilder.getBookByIdUrl(id), this._getCompressionHeaders());
-            return response.data as IBookData;
+            return this._mapResponseToBookData(response.data);
         } catch(error) {
             if(error.response.status === 404 || error.response.status === 503) return null;
             throw error;
@@ -28,6 +28,16 @@ export class GoogleApiService {
         return {
             'Accept-Encoding': 'gzip',
             'User-Agent': 'node-api (gzip)'
+        }
+    }
+
+    private _mapResponseToBookData(data: Record<string, any>): IBookData {
+        return {
+            id: data.id,
+            title: data.volumeInfo.title,
+            author: data.volumeInfo.authors[0],
+            publisher: data.volumeInfo.publisher,
+            publishedDate: data.volumeInfo.publishedDate
         }
     }
 }
