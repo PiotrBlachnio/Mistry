@@ -1,3 +1,5 @@
+## Documentation
+API documentation is available under GET /api-docs
 ## Technologies used
 * Node & Express
 * Typescript
