@@ -40,11 +40,11 @@ cd Node-API-Romin/
 ```
 
 ```
-npm install
+yarn install
 ```
 
 ```
-npm run start:dev
+yarn start:dev
 ```
 ## Running on localhost in production environment
 ****
@@ -61,13 +61,13 @@ cd Node-API-Romin/
 ```
 
 ```
-npm install
+yarn install
 ```
 
 ```
-npm run build
+yarn build
 ```
 
 ```
-npm run start:prod
+yarn start:prod
 ```
