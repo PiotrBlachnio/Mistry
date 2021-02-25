@@ -13,11 +13,11 @@ API documentation is available under GET /api-docs
 
 ****
 ```
-git clone https://github.com/PiotrBlachnio/Node-API-Romin.git
+git clone https://github.com/PiotrBlachnio/Mistry.git
 ```
 
 ```
-cd Node-API-Romin/
+cd Mistry/
 ```
 
 ```
@@ -34,11 +34,11 @@ docker-compose up
 ****
 
 ```
-git clone https://github.com/PiotrBlachnio/Node-API-Romin.git
+git clone https://github.com/PiotrBlachnio/Mistry.git
 ```
 
 ```
-cd Node-API-Romin/
+cd Mistry/
 ```
 
 ```
@@ -55,11 +55,11 @@ yarn start:dev
 ****
 
 ```
-git clone https://github.com/PiotrBlachnio/Node-API-Romin.git
+git clone https://github.com/PiotrBlachnio/Mistry.git
 ```
 
 ```
-cd Node-API-Romin/
+cd Mistry/
 ```
 
 ```
