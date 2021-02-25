@@ -1,3 +1,5 @@
+# Mistry
+Rest API created using Node and Typescript. It fetches the data from Google Books API and allows user to search and paginate it. It's free to use and does not require any authentication to interact.
 ## Documentation
 API documentation is available under GET /api-docs
 ## Technologies used
@@ -73,3 +75,10 @@ yarn build
 ```
 yarn start:prod
 ```
+
+## Contributing
+1. Fork it (https://github.com/PiotrBlachnio/Mistry/fork)
+1. Create your feature branch (git checkout -b feature/fooBar)
+1. Commit your changes (git commit -am 'Add some fooBar')
+1. Push to the branch (git push origin feature/fooBar)
+1. Create a new Pull Request
